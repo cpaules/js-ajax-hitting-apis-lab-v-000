@@ -16,12 +16,12 @@ function getCommits(el) {
   const repoName = el.dataset.repo
   const req = new XMLHttpRequest()
   req.addEventListener("load", displayCommits)
-  req.open("GET", 'https://api.github.com/repos/octocat' + repoName + '/commits')
+  req.open("GET", 'https://api.github.com/repos/octocat/' + repoName + '/commits')
   req.send()
 }
 
 function displayCommits() {
   const commits = JSON.parse(this.responseText)
   const commitsList = `<ul>${commits.map(commit => '<li><strong>' + commit.author.login + '</strong> - ' + commit.commit.message + '</li>').join('')}</ul>`
-  document.getElementById("commits").innerHTML = commitsList
+  document.getElementById("details").innerHTML = commitsList
 }
